@@ -1,0 +1,23 @@
+[
+    {
+        "studentId": 1,
+        "deviceId": "device-abc-123",
+        "deviceType": "Mobile",
+        "ipAddress": "192.168.1.101",
+        "registeredAt": "2025-07-02T14:25:03.211149"
+    },
+     {
+        "studentId": 2,
+        "deviceId": "device-abc-123",
+        "deviceType": "Mobile",
+        "ipAddress": "192.168.1.101",
+        "registeredAt": "2025-07-02T14:25:03.211149"
+    },
+     {
+        "studentId": 3,
+        "deviceId": "device-abc-123",
+        "deviceType": "Mobile",
+        "ipAddress": "192.168.1.101",
+        "registeredAt": "2025-07-02T14:25:03.211149"
+    }
+]
