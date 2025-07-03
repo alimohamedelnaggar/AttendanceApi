@@ -1,5 +1,8 @@
+using AttendanceApi.Core.Entities.Identity;
 using AttendanceApi.Repository.Data.Contexts;
+using AttendanceApi.Repository.Identity;
 using AttendanceApi.Repository.Identity.contexts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +24,9 @@ builder.Services.AddDbContext<AttendanceIdentity>(op =>
     op.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"));
 });
 
+builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<AttendanceIdentity>();
+
+
 
 var app = builder.Build();
 
@@ -31,12 +37,14 @@ var scoped = app.Services.CreateScope();
 var service = scoped.ServiceProvider;
 var context = service.GetRequiredService<AttendanceDbContext>();
 var contextIdentity = service.GetRequiredService<AttendanceIdentity>();
+var userManager=service.GetRequiredService<UserManager<AppUser>>();
 var loggerFactory = service.GetRequiredService<ILoggerFactory>();
 try
 {
     await context.Database.MigrateAsync();
     await AttendanceSeedDbContext.SeedData(context);
     await contextIdentity.Database.MigrateAsync();
+    await IdentitySeed.SeedIdentityAsync(userManager);
 
 }
 catch (Exception ex)
