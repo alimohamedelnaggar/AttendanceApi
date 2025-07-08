@@ -15,11 +15,13 @@ namespace AttendanceApi.Service.Users
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private readonly ITokenService tokenService;
 
-        public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,ITokenService tokenService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.tokenService = tokenService;
         }
 
 
@@ -34,7 +36,7 @@ namespace AttendanceApi.Service.Users
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
-                Token =null
+                Token =await tokenService.CreateTokenAsync(user,userManager),
             };
         }
 
@@ -54,7 +56,7 @@ namespace AttendanceApi.Service.Users
             {
                 Email = user.Email,
                 DisplayName = user.DisplayName,
-                Token = null
+                Token = await tokenService.CreateTokenAsync(user, userManager),
             };
 
 
