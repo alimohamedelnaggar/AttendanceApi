@@ -1,5 +1,6 @@
 ﻿using AttendanceApi.Core.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +20,17 @@ namespace AttendanceApi.Repository.Identity
                 {
                     Email = "alimohamed@gmail.com",
                     DisplayName = "Ali Mohamed",
-                    PhoneNumber= "1234567890",
-                    UserName="ali.mohamed",
-                   
+                    PhoneNumber = "1234567890",
+                    UserName = "ali.mohamed",
+
 
                 };
-                
 
-            await userManager.CreateAsync(user, "P@ssW0rd");
+
+                await userManager.CreateAsync(user, "P@ssW0rd");
             }
 
+            
         }
     }
 }

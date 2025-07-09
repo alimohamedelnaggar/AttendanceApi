@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AttendanceApi.Repository\AttendanceApi.Repository.csproj" />
+    <ProjectReference Include="..\AttendanceApi.Service\AttendanceApi.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AttendanceApi.Api.Controllers
@@ -17,7 +18,7 @@ namespace AttendanceApi.Api.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(Roles ="admin")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

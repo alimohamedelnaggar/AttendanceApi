@@ -21,5 +21,7 @@ namespace AttendanceApi.Core.Dtos.RegisterUser
         public string PhoneNumber { get; set; }
 
 
+        public string Role { get; set; }
+
     }
 }

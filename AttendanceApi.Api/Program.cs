@@ -1,7 +1,10 @@
 using AttendanceApi.Core.Entities.Identity;
+using AttendanceApi.Core.Service.Contract;
 using AttendanceApi.Repository.Data.Contexts;
 using AttendanceApi.Repository.Identity;
 using AttendanceApi.Repository.Identity.contexts;
+using AttendanceApi.Service.Token;
+using AttendanceApi.Service.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +32,8 @@ builder.Services.AddDbContext<AttendanceIdentity>(op =>
 
 builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<AttendanceIdentity>();
 
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 builder.Services.AddAuthentication(op =>
 {
@@ -66,6 +71,7 @@ try
     await AttendanceSeedDbContext.SeedData(context);
     await contextIdentity.Database.MigrateAsync();
     await IdentitySeed.SeedIdentityAsync(userManager);
+     await SeedRole.AddRoleAsync(service);
 
 }
 catch (Exception ex)

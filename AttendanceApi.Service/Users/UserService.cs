@@ -51,6 +51,7 @@ namespace AttendanceApi.Service.Users
                 UserName = registerDto.Email.Split("@")[0],
             };
             var result= await userManager.CreateAsync(user, registerDto.Password);
+            await userManager.AddToRoleAsync(user, registerDto.Role);
             if(!result.Succeeded)return null;
             return new UserDto()
             {

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceApi.Service.Token
 {
-    internal class TokenService : ITokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration configuration;
 
@@ -45,7 +45,7 @@ namespace AttendanceApi.Service.Token
                 audience: configuration["JWT:Audience"],
                 expires: DateTime.Now.AddDays(double.Parse( configuration["JWT:Duration"])),
                 claims:claims,
-                signingCredentials:new SigningCredentials(secKey,SecurityAlgorithms.EcdsaSha256Signature)
+                signingCredentials:new SigningCredentials(secKey,SecurityAlgorithms.HmacSha256)
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
 
