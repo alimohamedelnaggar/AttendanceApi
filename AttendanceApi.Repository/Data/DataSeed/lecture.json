@@ -1,12 +1,6 @@
 [
-    {
-        "courseId": 1,
-        "startTime": "2025-06-27T10:00:00",
-        "qrCodeContent": "qr-lecture-1-code"
-    },
-    {
-        "courseId": 2,
-        "startTime": "2025-06-27T10:00:00",
-        "qrCodeContent": "qr-lecture-1-code"
-    }
+  {
+    "StartTime": "2025-07-15T10:00:00",
+    "CourseId": 1
+  }
 ]

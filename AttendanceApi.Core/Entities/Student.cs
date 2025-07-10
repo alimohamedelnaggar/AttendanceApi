@@ -12,11 +12,15 @@ namespace AttendanceApi.Core.Entities
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Password { get; set; }
-
+        public int NationalId { get; set; }
+        public string Department { get; set; }
+        public string? Faculty { get; set; }
+        public int? Year { get; set; }
+        public string UniversityId { get; set; }
         // navigation
-        public ICollection<Attendance> Attendances { get; set; }
+        public ICollection<StudentAttendance> Attendances { get; set; }
+        public ICollection<StudentCourse> StudentCourse { get; set; }
 
-        public StudentDevice Device { get; set; }
 
     }
 }

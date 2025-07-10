@@ -1,20 +1,23 @@
+
 [
     {
-        "name": "Ali Mohamed",
-        "email": "ali@student.edu",
-        "gender":"male",
-        "password": "hashed_password_here"
-    },
-    {
-        "name": "adham ali",
-        "email": "adham@student.edu",
-        "gender":"male",
-        "password": "hashed_password_here"
-    },
-    {
-        "name": "samia salama",
-        "email": "samia@student.edu",
-        "gender":"female",
-        "password": "hashed_password_here"
-    }
+    "Name": "Ali Hassan",
+    "Email": "ali@student.com",
+    "Password": "hashed_password_here",
+    "UniversityId": "20201001",
+    "Faculty": "Engineering",
+    "Department": "CS&Math",
+    "Gender": "m",
+    "Year": 4
+},
+  {
+    "Name": "samia",
+    "Email": "samia@student.com",
+    "Password": "hashed_password_here",
+    "UniversityId": "20201001",
+    "Faculty": "Engineering",
+    "Department": "CS",
+    "Gender": "f",
+    "Year": 3
+  }
 ]

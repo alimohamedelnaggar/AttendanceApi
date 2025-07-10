@@ -9,55 +9,21 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AttendanceApi.Repository.Data.Migrations
+namespace AttendanceApi.Repository.Migrations.AttendanceDb
 {
     [DbContext(typeof(AttendanceDbContext))]
-    [Migration("20250702145810_Update")]
-    partial class Update
+    [Migration("20250710132037_UpdateV02")]
+    partial class UpdateV02
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.6")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AttendanceApi.Core.Entities.Attendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CheckInTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeviceId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IPAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LectureId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LectureId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Attendances");
-                });
 
             modelBuilder.Entity("AttendanceApi.Core.Entities.Course", b =>
                 {
@@ -67,13 +33,46 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("InstructorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InstructorId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("InstructorId1");
+
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("AttendanceApi.Core.Entities.Instructor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("AttendanceApi.Core.Entities.Lecture", b =>
@@ -86,10 +85,6 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
-
-                    b.Property<string>("QrCodeContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
@@ -109,7 +104,15 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Faculty")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -121,16 +124,27 @@ namespace AttendanceApi.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NationalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UniversityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Year")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentDevice", b =>
+            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentAttendance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,33 +152,70 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DeviceId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeviceType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IPAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RegisteredAt")
+                    b.Property<DateTime>("CheckInTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LectureId")
+                        .HasColumnType("int");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("LectureId");
 
-                    b.ToTable("Devices");
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentAttendances");
                 });
 
-            modelBuilder.Entity("AttendanceApi.Core.Entities.Attendance", b =>
+            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentCourses");
+                });
+
+            modelBuilder.Entity("AttendanceApi.Core.Entities.Course", b =>
+                {
+                    b.HasOne("AttendanceApi.Core.Entities.Instructor", "Instructor")
+                        .WithMany("Courses")
+                        .HasForeignKey("InstructorId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("AttendanceApi.Core.Entities.Lecture", b =>
+                {
+                    b.HasOne("AttendanceApi.Core.Entities.Course", "Course")
+                        .WithMany("Lectures")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentAttendance", b =>
                 {
                     b.HasOne("AttendanceApi.Core.Entities.Lecture", "Lecture")
                         .WithMany("Attendances")
@@ -183,31 +234,35 @@ namespace AttendanceApi.Repository.Data.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("AttendanceApi.Core.Entities.Lecture", b =>
+            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentCourse", b =>
                 {
                     b.HasOne("AttendanceApi.Core.Entities.Course", "Course")
-                        .WithMany("Lecture")
+                        .WithMany("StudentCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("AttendanceApi.Core.Entities.StudentDevice", b =>
-                {
                     b.HasOne("AttendanceApi.Core.Entities.Student", "Student")
-                        .WithOne("Device")
-                        .HasForeignKey("AttendanceApi.Core.Entities.StudentDevice", "StudentId")
+                        .WithMany("StudentCourse")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Course");
 
                     b.Navigation("Student");
                 });
 
             modelBuilder.Entity("AttendanceApi.Core.Entities.Course", b =>
                 {
-                    b.Navigation("Lecture");
+                    b.Navigation("Lectures");
+
+                    b.Navigation("StudentCourses");
+                });
+
+            modelBuilder.Entity("AttendanceApi.Core.Entities.Instructor", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("AttendanceApi.Core.Entities.Lecture", b =>
@@ -219,8 +274,7 @@ namespace AttendanceApi.Repository.Data.Migrations
                 {
                     b.Navigation("Attendances");
 
-                    b.Navigation("Device")
-                        .IsRequired();
+                    b.Navigation("StudentCourse");
                 });
 #pragma warning restore 612, 618
         }

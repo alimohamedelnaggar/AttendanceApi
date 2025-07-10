@@ -27,6 +27,20 @@ namespace AttendanceApi.Repository.Data.Contexts
                     context.SaveChanges();
                 }
             }
+            if (context.Instructors.Count() == 0)
+            {
+                var studentData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\instructor.json");
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var student = JsonSerializer.Deserialize<List<Instructor>>(studentData, options);
+                if (student?.Count > 0)
+                {
+                    await context.Instructors.AddRangeAsync(student);
+                    context.SaveChanges();
+                }
+            }
             if (context.Courses.Count() == 0)
             {
                 var courseData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\course.json");
@@ -41,45 +55,45 @@ namespace AttendanceApi.Repository.Data.Contexts
                     context.SaveChanges();
                 }
             }
-            if (context.Devices.Count() == 0)
-            {
-                var deviceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentdevice.json");
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-                var device = JsonSerializer.Deserialize<List<StudentDevice>>(deviceData, options);
-                if (device?.Count > 0)
-                {
-                    await context.Devices.AddRangeAsync(device);
-                    context.SaveChanges();
-                }
-            }
             if (context.Lectures.Count() == 0)
             {
-                var lectureData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\lecture.json");
+                var deviceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\lecture.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                var lecture = JsonSerializer.Deserialize<List<Lecture>>(lectureData, options);
-                if (lecture?.Count > 0)
+                var device = JsonSerializer.Deserialize<List<Lecture>>(deviceData, options);
+                if (device?.Count > 0)
                 {
-                    await context.Lectures.AddRangeAsync(lecture);
+                    await context.Lectures.AddRangeAsync(device);
                     context.SaveChanges();
                 }
             }
-            if (context.Attendances.Count() == 0)
+            if (context.StudentAttendances.Count() == 0)
             {
-                var attendanceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\attendance.json");
+                var lectureData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentattendance.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                var attendance = JsonSerializer.Deserialize<List<Core.Entities.Attendance>>(attendanceData, options);
+                var lecture = JsonSerializer.Deserialize<List<StudentAttendance>>(lectureData, options);
+                if (lecture?.Count > 0)
+                {
+                    await context.StudentAttendances.AddRangeAsync(lecture);
+                    context.SaveChanges();
+                }
+            }
+            if (context.StudentCourses.Count() == 0)
+            {
+                var attendanceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentcourse.json");
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var attendance = JsonSerializer.Deserialize<List<StudentCourse>>(attendanceData, options);
                 if (attendance?.Count > 0)
                 {
-                    await context.Attendances.AddRangeAsync(attendance);
+                    await context.StudentCourses.AddRangeAsync(attendance);
                     context.SaveChanges();
                 }
             }

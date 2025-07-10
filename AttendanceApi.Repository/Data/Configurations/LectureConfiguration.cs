@@ -14,7 +14,7 @@ namespace Attendance.Repository.Data.Configurations
         public void Configure(EntityTypeBuilder<Lecture> builder)
         {
             builder.Property(p=>p.StartTime).IsRequired();
-            builder.Property(p=>p.QrCodeContent).IsRequired();
+            
             
         }
     }

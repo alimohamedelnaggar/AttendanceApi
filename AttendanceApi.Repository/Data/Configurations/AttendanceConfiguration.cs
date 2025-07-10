@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AttendanceApi.Repository.Data.Configurations
 {
-    public class AttendanceConfiguration : IEntityTypeConfiguration<Core.Entities.Attendance>
+    public class AttendanceConfiguration : IEntityTypeConfiguration<Core.Entities.StudentAttendance>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Core.Entities.Attendance> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Core.Entities.StudentAttendance> builder)
         {
-            builder.Property(p => p.IPAddress).IsRequired();
+            
             builder.Property(p => p.CheckInTime).IsRequired();
-            builder.Property(p => p.DeviceId).IsRequired();
+            
 
         }
     }

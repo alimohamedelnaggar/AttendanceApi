@@ -11,14 +11,12 @@ namespace AttendanceApi.Core.Entities
         
         public DateTime StartTime { get; set; }
 
-        public string QrCodeContent { get; set; }
-
         // navigation
 
         public Course Course { get; set; }
 
         public int CourseId { get; set; }
 
-        public ICollection<Attendance> Attendances { get; set; }
+        public ICollection<StudentAttendance> Attendances { get; set; }
     }
 }

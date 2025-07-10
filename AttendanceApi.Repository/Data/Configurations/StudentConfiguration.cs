@@ -19,6 +19,10 @@ namespace Attendance.Repository.Data.Configurations
             builder.Property(p=>p.Password).IsRequired();
             
             builder.Property(p=>p.Gender).IsRequired();
+            builder.Property(p=>p.NationalId).IsRequired();
+            builder.Property(p=>p.UniversityId).IsRequired();
+            builder.Property(p=>p.Faculty).IsRequired();
+            builder.Property(p=>p.Year).IsRequired();
         }
     }
 }

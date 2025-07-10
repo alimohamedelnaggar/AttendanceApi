@@ -4,6 +4,7 @@ using AttendanceApi.Repository.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceApi.Repository.Data.Migrations
 {
     [DbContext(typeof(AttendanceDbContext))]
-    partial class AttendanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250710133025_UpdateV02")]
+    partial class UpdateV02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,11 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InstructorId")
+                    b.Property<string>("InstructorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InstructorId1")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -39,7 +46,7 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId");
+                    b.HasIndex("InstructorId1");
 
                     b.ToTable("Courses");
                 });
@@ -190,7 +197,7 @@ namespace AttendanceApi.Repository.Data.Migrations
                 {
                     b.HasOne("AttendanceApi.Core.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("InstructorId")
+                        .HasForeignKey("InstructorId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -22,9 +22,10 @@ namespace AttendanceApi.Repository.Data.Contexts
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
-        public DbSet<Core.Entities.Attendance> Attendances { get; set; }
+        public DbSet<StudentAttendance> StudentAttendances { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<StudentDevice> Devices { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
         // Fully qualify 'Attendance' to resolve ambiguity  
     }
 }
