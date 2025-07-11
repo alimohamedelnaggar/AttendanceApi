@@ -60,7 +60,6 @@ namespace AttendanceApi.Service.Users
                 Token = await tokenService.CreateTokenAsync(user, userManager),
             };
 
-
         }
         public async Task<bool> CheckEmailExistAsync(string email)
         {
