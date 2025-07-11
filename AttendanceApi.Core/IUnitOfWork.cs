@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceApi.Core
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork:IDisposable
     {
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
         

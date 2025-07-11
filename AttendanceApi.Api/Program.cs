@@ -1,8 +1,12 @@
+using AttendanceApi.Core;
 using AttendanceApi.Core.Entities.Identity;
+using AttendanceApi.Core.Mapper;
 using AttendanceApi.Core.Service.Contract;
+using AttendanceApi.Repository;
 using AttendanceApi.Repository.Data.Contexts;
 using AttendanceApi.Repository.Identity;
 using AttendanceApi.Repository.Identity.contexts;
+using AttendanceApi.Service.Qr;
 using AttendanceApi.Service.Token;
 using AttendanceApi.Service.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,6 +24,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(m => m.AddProfile(new StudentProfile()));
 
 builder.Services.AddDbContext<AttendanceDbContext>(op =>
 {
@@ -34,6 +39,9 @@ builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<At
 
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IQrService,QrService>();
+
 
 builder.Services.AddAuthentication(op =>
 {
@@ -55,7 +63,6 @@ builder.Services.AddAuthentication(op =>
 
 
 var app = builder.Build();
-
 
 
 // Configure the HTTP request pipeline.

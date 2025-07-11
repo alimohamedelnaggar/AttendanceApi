@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AttendanceApi.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController : ControllerBase
+    
+    public class AccountController : BaseController
     {
         private readonly IUserService userService;
 

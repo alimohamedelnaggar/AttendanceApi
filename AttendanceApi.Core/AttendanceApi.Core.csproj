@@ -9,11 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="8.0.0" />
+		<PackageReference Include="AutoMapper" Version="15.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
-		<PackageReference Include="ZXing.Net" Version="0.16.10" />
-		<PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.13" />
+	
 	</ItemGroup>
 
 </Project>

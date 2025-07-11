@@ -26,6 +26,11 @@ namespace AttendanceApi.Repository
             return await dbContext.SaveChangesAsync();
         }
 
+        public void Dispose()
+        {
+            dbContext.Dispose();
+        }
+
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
             var type= typeof(TEntity).Name;
@@ -34,7 +39,7 @@ namespace AttendanceApi.Repository
                var repository= new GenericRepository<TEntity>(dbContext);
                 repositories.Add(type, repository);
             }
-            return repositories[0]as IGenericRepository<TEntity> ;
+            return repositories[type]as IGenericRepository<TEntity> ;
         }
     }
 }
