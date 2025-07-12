@@ -12,6 +12,7 @@ namespace AttendanceApi.Core.Repository.Contract
     {
        public Task<IEnumerable<TEntity>> GetAllAsync();
        public Task<IEnumerable<TEntity>> GetAllWithSpecAsync(ISpecification<TEntity> specification);
+       public Task AddAsync(TEntity entity);
        
     }
 }

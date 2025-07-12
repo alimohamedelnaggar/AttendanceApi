@@ -34,5 +34,19 @@ namespace AttendanceApi.Api.Controllers
             if (instructors is null) return BadRequest();
             return Ok(instructors);
         }
+        [HttpPost]
+        public async Task<IActionResult> RecordAttendance(AttendanceDto attendanceDto)
+        {
+            var attendance = new StudentAttendance()
+            {
+                CheckInTime =attendanceDto.CheckInTime,
+                Department =attendanceDto.Department,
+                StudentId =attendanceDto.StudentId,
+                LectureId =attendanceDto.LectureId,
+            };
+            await unitOfWork.Repository<StudentAttendance>().AddAsync(attendance);
+            await unitOfWork.CompleteAsync();
+            return Ok(new {message="Attendance Add Successfully"});
+        }
     }
 }

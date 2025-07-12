@@ -20,6 +20,11 @@ namespace AttendanceApi.Repository.Repository
             this.dbContext = dbContext;
         }
 
+        public async Task AddAsync(TEntity entity)
+        {
+            await dbContext.Set<TEntity>().AddAsync(entity);
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await dbContext.Set<TEntity>().ToListAsync();

@@ -11,6 +11,11 @@ namespace AttendanceApi.Core
     public interface IUnitOfWork:IDisposable
     {
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
+
+
+        //public Task<int> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity;
+
+
         
         public Task<int> CompleteAsync();
     }

@@ -14,15 +14,23 @@ namespace AttendanceApi.Core.Entities
 
         public int StudentId { get; set; }
 
-        
         public Student Student { get; set; }
-
         
-        public int LectureId { get; set; }
+        [Required]
+        public string Department { get; set; }
 
+        [Required]
+        public int NationalId { get; set; }
+
+        public int LectureId { get; set; }
         public Lecture Lecture { get; set; }
 
-        public DateTime CheckInTime { get; set; } = DateTime.UtcNow;
+        [Required]
+        public DateTime CheckInTime { get; set; }
+
+
+        
+        
 
     }
 }
