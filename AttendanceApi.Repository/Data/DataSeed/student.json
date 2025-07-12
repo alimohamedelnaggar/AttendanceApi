@@ -1,15 +1,16 @@
 
 [
-    {
+  {
     "Name": "Ali Hassan",
     "Email": "ali@student.com",
     "Password": "hashed_password_here",
     "UniversityId": "20201001",
     "Faculty": "Engineering",
     "Department": "CS&Math",
+    "NationalId": "05050550565555",
     "Gender": "m",
     "Year": 4
-},
+  },
   {
     "Name": "samia",
     "Email": "samia@student.com",
@@ -17,6 +18,7 @@
     "UniversityId": "20201001",
     "Faculty": "Engineering",
     "Department": "CS",
+    "NationalId": "5458484848484848",
     "Gender": "f",
     "Year": 3
   }

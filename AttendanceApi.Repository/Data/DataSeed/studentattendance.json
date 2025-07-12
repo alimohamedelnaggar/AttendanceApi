@@ -1,7 +1,9 @@
 [
   {
-    "StudentId": 4,
-    "LectureId": 1,
-    "CheckInTime": "2025-07-15T10:05:00"
+    "studentId": 6,
+    "department": "Computer Science",
+    "nationalId": "29805150123456",
+    "lectureId": 1,
+    "checkInTime": "2025-07-12T08:30:00Z"
   }
 ]

@@ -20,7 +20,7 @@ namespace AttendanceApi.Core.Entities
         public string Department { get; set; }
 
         [Required]
-        public int NationalId { get; set; }
+        public string NationalId { get; set; }
 
         public int LectureId { get; set; }
         public Lecture Lecture { get; set; }

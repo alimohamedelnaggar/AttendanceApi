@@ -12,7 +12,7 @@ namespace AttendanceApi.Core.Entities
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Password { get; set; }
-        public int NationalId { get; set; }
+        public string NationalId { get; set; }
         public string Department { get; set; }
         public string? Faculty { get; set; }
         public int? Year { get; set; }

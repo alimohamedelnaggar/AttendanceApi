@@ -34,7 +34,7 @@ namespace AttendanceApi.Api.Controllers
             if (instructors is null) return BadRequest();
             return Ok(instructors);
         }
-        [HttpPost]
+        [HttpPost("record")]
         public async Task<IActionResult> RecordAttendance(AttendanceDto attendanceDto)
         {
             var attendance = new StudentAttendance()
@@ -43,6 +43,7 @@ namespace AttendanceApi.Api.Controllers
                 Department =attendanceDto.Department,
                 StudentId =attendanceDto.StudentId,
                 LectureId =attendanceDto.LectureId,
+                NationalId =attendanceDto.NationalId,
             };
             await unitOfWork.Repository<StudentAttendance>().AddAsync(attendance);
             await unitOfWork.CompleteAsync();

@@ -12,7 +12,7 @@ namespace AttendanceApi.Core.Dtos.QrDto
         public string Name { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }
-        public int NationalId { get; set; }
+        public string NationalId { get; set; }
         public string Department { get; set; }
         public string? Faculty { get; set; }
         public int? Year { get; set; }
