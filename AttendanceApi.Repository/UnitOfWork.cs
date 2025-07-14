@@ -22,12 +22,7 @@ namespace AttendanceApi.Repository
             repositories = new Hashtable();
         }
 
-        //public async Task<int> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity
-        //{
-        //    await dbContext.Set<TEntity>().AddAsync(entity);
-        //    return await dbContext.SaveChangesAsync();
-            
-        //}
+        
 
         public async Task<int> CompleteAsync()
         {

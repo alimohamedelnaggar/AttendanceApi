@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\DataSeed\studentattendance.json~RFde747e7.TMP" />
+    <None Remove="Data\DataSeed\studentattendance.json~RFe15bb23.TMP" />
     <None Remove="Data\DataSeed\studentcourse.json" />
   </ItemGroup>
 

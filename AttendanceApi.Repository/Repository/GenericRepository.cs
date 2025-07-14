@@ -35,5 +35,28 @@ namespace AttendanceApi.Repository.Repository
             var query= SpecificationEvaluator<TEntity>.GetQuery(dbContext.Set<TEntity>(), specification);  
             return await query.ToListAsync();
         }
+
+        
+
+        //public async Task<TEntity> GetByCodeAsync(string code)
+        //{
+        //   var course=  await dbContext.Set<TEntity>().FindAsync(code);
+        //    if (course is null) return null;
+        //    return course;
+        //}
+
+        public async Task<TEntity> GetByCodeAsync(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
+        }
+
+        public void Remove(TEntity entity)
+        {
+             dbContext.Set<TEntity>().Remove(entity);
+        }
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> specification)
+        {
+            return SpecificationEvaluator<TEntity>.GetQuery(dbContext.Set<TEntity>(), specification);
+        }
     }
 }

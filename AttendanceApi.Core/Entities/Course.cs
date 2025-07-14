@@ -13,9 +13,11 @@ namespace AttendanceApi.Core.Entities
     {
         
         public string Name { get; set; }
+        public string Code { get; set; } 
 
         public Instructor Instructor { get; set; }
-        public int InstructorId { get; set; }
+        
+        public int? InstructorId { get; set; }
 
         // Navigation
         public ICollection<StudentCourse> StudentCourses { get; set; }

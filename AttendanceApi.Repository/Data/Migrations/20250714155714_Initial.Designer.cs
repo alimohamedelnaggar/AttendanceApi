@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceApi.Repository.Data.Migrations
 {
     [DbContext(typeof(AttendanceDbContext))]
-    [Migration("20250710133025_UpdateV02")]
-    partial class UpdateV02
+    [Migration("20250714155714_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,11 +33,11 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("InstructorId")
+                    b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InstructorId1")
+                    b.Property<int>("InstructorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -46,7 +46,7 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId1");
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("Courses");
                 });
@@ -124,8 +124,9 @@ namespace AttendanceApi.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NationalId")
-                        .HasColumnType("int");
+                    b.Property<string>("NationalId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -155,11 +156,27 @@ namespace AttendanceApi.Repository.Data.Migrations
                     b.Property<DateTime>("CheckInTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LectureId")
                         .HasColumnType("int");
 
+                    b.Property<string>("NationalId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UniversityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -197,7 +214,7 @@ namespace AttendanceApi.Repository.Data.Migrations
                 {
                     b.HasOne("AttendanceApi.Core.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("InstructorId1")
+                        .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

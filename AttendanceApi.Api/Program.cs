@@ -6,6 +6,7 @@ using AttendanceApi.Repository;
 using AttendanceApi.Repository.Data.Contexts;
 using AttendanceApi.Repository.Identity;
 using AttendanceApi.Repository.Identity.contexts;
+using AttendanceApi.Service;
 using AttendanceApi.Service.Qr;
 using AttendanceApi.Service.Token;
 using AttendanceApi.Service.Users;
@@ -39,6 +40,7 @@ builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<At
 
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddScoped<IInstructorService,InstructorService>();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IQrService,QrService>();
 
@@ -95,6 +97,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

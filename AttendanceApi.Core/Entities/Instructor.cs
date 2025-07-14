@@ -15,6 +15,7 @@ namespace AttendanceApi.Core.Entities
       
         public string Email { get; set; }
 
+        public int InstructorIdentifier { get; set; }
 
         public string? Department { get; set; }
 

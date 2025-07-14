@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AttendanceApi.Repository.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateV02 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,7 @@ namespace AttendanceApi.Repository.Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalId = table.Column<int>(type: "int", nullable: false),
+                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Faculty = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
@@ -54,15 +54,15 @@ namespace AttendanceApi.Repository.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InstructorId1 = table.Column<int>(type: "int", nullable: false),
-                    InstructorId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InstructorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Courses_Instructors_InstructorId1",
-                        column: x => x.InstructorId1,
+                        name: "FK_Courses_Instructors_InstructorId",
+                        column: x => x.InstructorId,
                         principalTable: "Instructors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -121,6 +121,10 @@ namespace AttendanceApi.Repository.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(type: "int", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NationalId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UniversityId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LectureId = table.Column<int>(type: "int", nullable: false),
                     CheckInTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -142,9 +146,9 @@ namespace AttendanceApi.Repository.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_InstructorId1",
+                name: "IX_Courses_InstructorId",
                 table: "Courses",
-                column: "InstructorId1");
+                column: "InstructorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lectures_CourseId",

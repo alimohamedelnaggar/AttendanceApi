@@ -16,9 +16,15 @@ namespace AttendanceApi.Core.Dtos.QrDto
         public string Department { get; set; }
         [Required]
         public string  NationalId { get; set; }
-        
+        [Required]
+        public string UniversityId { get; set; }
+
+        [Required]
+        public string Gender { get; set; }
         public int LectureId { get; set; }
         [Required]
         public DateTime CheckInTime { get; set; }
+
+
     }
 }

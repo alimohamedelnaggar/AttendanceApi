@@ -10,7 +10,7 @@ namespace AttendanceApi.Core.Specifications
 {
     public interface ISpecification<TEntity> where TEntity : BaseEntity
     {
-        //public Expression<Func<TEntity,bool>> Criteria { get; set; }
+        public Expression<Func<TEntity,bool>> Criteria { get; set; }
         public List<Expression<Func<TEntity, object>>> Includes { get; set; }
 
     }

@@ -15,7 +15,7 @@ namespace AttendanceApi.Repository.Data.Contexts
 
             if (context.Students.Count() == 0)
             {
-                var studentData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\student.json");
+                var studentData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\student.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -29,7 +29,7 @@ namespace AttendanceApi.Repository.Data.Contexts
             }
             if (context.Instructors.Count() == 0)
             {
-                var studentData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\instructor.json");
+                var studentData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\instructor.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -43,7 +43,7 @@ namespace AttendanceApi.Repository.Data.Contexts
             }
             if (context.Courses.Count() == 0)
             {
-                var courseData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\course.json");
+                var courseData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\course.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -57,7 +57,7 @@ namespace AttendanceApi.Repository.Data.Contexts
             }
             if (context.Lectures.Count() == 0)
             {
-                var deviceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\lecture.json");
+                var deviceData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\lecture.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -71,7 +71,7 @@ namespace AttendanceApi.Repository.Data.Contexts
             }
             if (context.StudentAttendances.Count() == 0)
             {
-                var lectureData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentattendance.json");
+                var lectureData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentattendance.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -85,7 +85,7 @@ namespace AttendanceApi.Repository.Data.Contexts
             }
             if (context.StudentCourses.Count() == 0)
             {
-                var attendanceData = File.ReadAllText("E:\\GP\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentcourse.json");
+                var attendanceData = File.ReadAllText("E:\\MyProjects\\AttendanceApi\\AttendanceApi.Repository\\Data\\DataSeed\\studentcourse.json");
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true

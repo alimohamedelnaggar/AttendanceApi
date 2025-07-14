@@ -1,9 +1,11 @@
 [
   {
-    "studentId": 6,
+    "studentId": 1,
     "department": "Computer Science",
     "nationalId": "29805150123456",
     "lectureId": 1,
+    "UniversityID": "20201001",
+    "Gender": "m",
     "checkInTime": "2025-07-12T08:30:00Z"
   }
 ]

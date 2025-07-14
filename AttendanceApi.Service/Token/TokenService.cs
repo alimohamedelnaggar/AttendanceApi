@@ -29,6 +29,7 @@ namespace AttendanceApi.Service.Token
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim("InstructorId", user.Id),
                 new Claim(ClaimTypes.GivenName,user.DisplayName),
                 new Claim(ClaimTypes.MobilePhone,user.PhoneNumber),
 

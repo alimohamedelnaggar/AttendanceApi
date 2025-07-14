@@ -30,7 +30,11 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InstructorId")
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InstructorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -153,6 +157,10 @@ namespace AttendanceApi.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LectureId")
                         .HasColumnType("int");
 
@@ -162,6 +170,10 @@ namespace AttendanceApi.Repository.Data.Migrations
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UniversityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -199,9 +211,7 @@ namespace AttendanceApi.Repository.Data.Migrations
                 {
                     b.HasOne("AttendanceApi.Core.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InstructorId");
 
                     b.Navigation("Instructor");
                 });
