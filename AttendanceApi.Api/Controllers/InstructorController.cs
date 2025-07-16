@@ -3,6 +3,7 @@ using AttendanceApi.Core.Dtos;
 using AttendanceApi.Core.Dtos.QrDto;
 using AttendanceApi.Core.Entities;
 using AttendanceApi.Core.Service.Contract;
+using AttendanceApi.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,21 @@ namespace AttendanceApi.Api.Controllers
             var students=await instructorService.GetAllStudentsAsync();
             if (students is null)
                 return BadRequest();
+            return Ok(students);
+        }
+
+        [HttpGet("allattendance")]
+        public async Task<ActionResult<IEnumerable<StudentAttendance>>> GetAllStudentAttendance()
+        {
+            var students= await instructorService.GetAllStudentAttendance();
+            if (students is null) return BadRequest();
+            return Ok(students);
+        }
+        [HttpGet("lecture")]
+        public async Task<ActionResult<IEnumerable<StudentAttendance>>> GetAllStudentAttendanceFromCourse([FromQuery] int lectureId)
+        {
+            var students = await instructorService.GetAllStudentAttendanceFromCourse(lectureId);
+            if (students is null) return BadRequest();
             return Ok(students);
         }
     }

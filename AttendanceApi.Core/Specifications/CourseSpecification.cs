@@ -15,5 +15,9 @@ namespace AttendanceApi.Core.Specifications
         {
 
         }
+        public CourseSpecification(int courseId):base(p=>(p.Id==courseId))
+        {
+            
+        }
     }
 }

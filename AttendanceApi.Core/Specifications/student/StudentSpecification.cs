@@ -9,6 +9,10 @@ namespace AttendanceApi.Core.Specifications.student
 {
     public class StudentSpecification:BaseSpecification<Student>
     {
+        public StudentSpecification(string universityId):base(p=>(p.UniversityId==universityId))
+        {
+                
+        }
         public StudentSpecification()
         {
             Includes.Add(s=>s.Attendances); 

@@ -17,6 +17,7 @@ namespace AttendanceApi.Core.Repository.Contract
         public void Remove(TEntity entity);
 
         public Task<TEntity> GetByCodeAsync(ISpecification<TEntity> specification);
+        public Task<TEntity> GetWithSpecAsync(ISpecification<TEntity> specification);
        
     }
 }

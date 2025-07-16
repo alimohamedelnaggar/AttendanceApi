@@ -36,7 +36,13 @@ namespace AttendanceApi.Repository.Repository
             return await query.ToListAsync();
         }
 
-        
+        public async Task<TEntity> GetWithSpecAsync(ISpecification<TEntity> specification)
+        {
+            var query= SpecificationEvaluator<TEntity>.GetQuery(dbContext.Set<TEntity>(), specification);
+            return await query.FirstOrDefaultAsync();
+        }
+
+
 
         //public async Task<TEntity> GetByCodeAsync(string code)
         //{

@@ -4,6 +4,7 @@ using AttendanceApi.Core.Dtos.QrDto;
 using AttendanceApi.Core.Entities;
 using AttendanceApi.Core.Service.Contract;
 using AttendanceApi.Core.Specifications;
+using AttendanceApi.Core.Specifications.student;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System;
@@ -40,14 +41,19 @@ namespace AttendanceApi.Service
 
         }
 
-        public Task<IEnumerable<StudentAttendance>> GetAllStudentAttendance()
+        public async Task<IEnumerable<StudentAttendance>> GetAllStudentAttendance()
         {
-            throw new NotImplementedException();
+           var students=await unitOfWork.Repository<StudentAttendance>().GetAllAsync();
+            if (students is null) return null;
+            return students;
         }
 
-        public Task<IEnumerable<StudentAttendance>> GetAllStudentAttendanceFromCourse(int courseId)
+        public async Task<IEnumerable<StudentAttendance>> GetAllStudentAttendanceFromCourse(int lectureId)
         {
-            throw new NotImplementedException();
+            var spec = new AttendanceSpecification(lectureId);
+            var attendanceLecture= await unitOfWork.Repository<StudentAttendance>().GetAllWithSpecAsync(spec);
+            if (attendanceLecture is null) return null;
+            return attendanceLecture;
         }
 
         public async Task<IEnumerable<StudentDto>> GetAllStudentsAsync()
@@ -59,14 +65,20 @@ namespace AttendanceApi.Service
 
         }
 
-        public Task<IEnumerable<Student>> GetAllStudentsAsyncFromCourse(int courseId)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<IEnumerable<Student>> GetAllStudentsAsyncFromCourse(int courseId)
+        //{
+        //    var spec=new StudentCourseSpecification(courseId);
+        //    var students = await unitOfWork.Repository<Student>().GetAllWithSpecAsync(spec);
+        //    return students;
+        //}
 
-        public Task<Student> GetStudentAsyncByUniversityId(string universityId)
+        public async Task<Student> GetStudentAsyncByUniversityId(string universityId)
         {
-            throw new NotImplementedException();
+            var spec=new StudentSpecification(universityId);
+          var student= await unitOfWork.Repository<Student>().GetWithSpecAsync(spec);
+            if (student is null) return null;
+            return student;
+
         }
 
         //public async Task<string> RemoveCourseAsync(string code,int instructorId)

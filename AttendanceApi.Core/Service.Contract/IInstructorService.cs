@@ -17,7 +17,7 @@ namespace AttendanceApi.Core.Service.Contract
         //
 
         public Task<IEnumerable<StudentDto>> GetAllStudentsAsync();
-        public Task<IEnumerable<Student>> GetAllStudentsAsyncFromCourse(int courseId);
+       // public Task<IEnumerable<Student>> GetAllStudentsAsyncFromCourse(int courseId);
         public Task<Student> GetStudentAsyncByUniversityId(string universityId);
 
         //
